@@ -7,6 +7,18 @@
 ![result](https://raw.githubusercontent.com/masmaspedo/i3wm-theme/main/example.png)
 
 ## Dotfiles2.0
+I recommended using Dotfiles2.0
+
+### Package i am using for this dotfiles
+    - i3-gaps-rounded-git (REQUIRED)
+    - Polybar (REQUIRED)
+    - Picom-ibhagwan (REQUIRED)
+    - Music On Console / MOC (OPTIONAL)
+    - Ranger (OPTIONAL)
+    - Kitty (REQUIRED)
+    - Neovim (OPTIONAL)
+    - Cava (Optional)
+
 ### Changes
     - add to .Xresources
     - add kitty colorscheme
