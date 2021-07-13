@@ -1,0 +1,345 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #282C34
+background-alt = #282C34
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #D19A66
+secondary = #E06C75
+alert = #C678DD
+my_background 	= ${xrdb:background}
+my_foreground 	= ${xrdb:foreground}
+my_color0	= ${xrdb:color0}
+my_color1	= ${xrdb:color1}
+my_color2	= ${xrdb:color2}
+my_color3	= ${xrdb:color3}
+my_color4	= ${xrdb:color4}
+my_color5	= ${xrdb:color5}
+my_color6	= ${xrdb:color6}
+my_color7	= ${xrdb:color7}
+my_color8	= ${xrdb:color8}
+my_color9	= ${xrdb:color9}
+my_color10	= ${xrdb:color10}
+my_color11	= ${xrdb:color11}
+my_color12	= ${xrdb:color12}
+my_color13	= ${xrdb:color13}
+my_color14	= ${xrdb:color14}
+my_color15	= ${xrdb:color15}
+
+[bar/main_bar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+;offset-x = 10%
+;offset-y = 10%
+radius = 0.0
+fixed-center = false
+bottom = false
+
+background = ${colors.my_background}
+foreground = ${colors.foreground}
+
+line-size = 4
+line-color = ${colors.my_color4}
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = Font Awesome 5 Free:pixelsize=9:antialias=false:style=Regular
+font-1 = MesloLGS Nerd Font:size=9:antialias=true;0
+;font-2 = Font Awsome 5 Free:pixelsize=9:antialias=true;1
+
+modules-left = i3 polybar-windows
+modules-center =
+modules-right = player-moc memory battery date
+
+tray-position = right
+tray-padding = 10
+;tray-background = #282C34
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+index-sort = true
+pin-workspaces = true
+strip-wsnumbers = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+
+
+ws-icon-0 = "1:main;"
+ws-icon-1 = "2:code;"
+ws-icon-2 = "3:workspaces;"
+ws-icon-3 = "4:workspaces;"
+ws-icon-4 = "5:workspaces;"
+ws-icon-default = 
+
+label-unfocused-background = ${colors.my_background}
+label-unfocused-foreground = ${colors.my_color15}
+
+;label-mode = %mode%
+;label-mode-padding = 2
+;label-mode-background = ${colors.my_color4}
+
+label-focused = %icon%
+label-focused-foreground = ${colors.my_color15}
+label-focused-background = ${colors.my_background}
+label-focused-underline = ${colors.my_color4}
+label-focused-padding = 2
+
+label-unfocused = %icon%
+label-unfocused-padding = 2
+
+label-visible = %icon%
+label-visible-underline = ${colors.my_foreground}
+label-visible-padding = 4
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.my_foreground}
+label-urgent-background = ${colors.my_background}
+label-urgent-underline = ${colors.my_color8}
+label-urgent-padding = 2
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %d/%m/%Y"
+
+time = " %a %b %d, %I:%M %p "
+
+time-alt = %H:%M
+
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.my_color4}
+
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 99
+
+; see "man date" for details on how to format the time string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+; Default: %H:%M:%S
+time-format = %H:%M
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging>  <label-charging>%
+
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity>  <label-discharging>%
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+format-full = <ramp-capacity>  <label-full>%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+label-full = %percentage%
+
+format-charging-underline = ${colors.my_color2}
+format-discharging-underline = ${colors.my_color9}
+format-full-underline = ${colors.my_color6}
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3
+click-left = kitty -e 'htop'
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+
+label =  %gb_used%
+
+; Only applies if <bar-used> is used
+;bar-used-indicator =
+;bar-used-width = 50
+;bar-used-foreground-0 = #55aa55
+;bar-used-foreground-1 = #557755
+;bar-used-foreground-2 = #f5a70a
+;bar-used-foreground-3 = #ff5555
+;bar-used-fill = ▐
+;bar-used-empty = ▐
+;bar-used-empty-foreground = #444444
+format-underline = #D19A66
+
+; Only applies if <ramp-used> is used
+;ramp-used-0 = ▁
+;ramp-used-1 = ▂
+;ramp-used-2 = ▃
+;ramp-used-3 = ▄
+;ramp-used-4 = ▅
+;ramp-used-5 = ▆
+;ramp-used-6 = ▇
+;ramp-used-7 = █
+
+; Only applies if <ramp-free> is used
+;ramp-free-0 = ▁
+;ramp-free-1 = ▂
+;ramp-free-2 = ▃
+;ramp-free-3 = ▄
+;ramp-free-4 = ▅
+;ramp-free-5 = ▆
+;ramp-free-6 = ▇
+;ramp-free-7 = █
+
+[module/polybar-windows]
+type = custom/script
+exec = ~/.config/polybar/polybar-window.sh 2>/dev/null
+format = <label>
+separator = ""
+inactive_text_color = ${color.foreground}
+active_text_color = ${color.foreground}
+active_bg = ${color.background}
+inactive_bg = ${color.background}
+inactive_underline = ${color.background}
+active_underline = ${color.my_color4}
+label = %output%
+label-padding = 1
+tail = 1
+
+
+[module/player-moc]
+type = custom/script
+exec = ~/.config/polybar/polybar-moc.sh
+interval = 3
+format =  <label>
+label-maxlen = 30
+click-left = mocp -f &
+click-right = mocp -r &
+click-middle = mocp -G &
+inactive_text_color = ${color.foreground}
+active_text_color = ${color.foreground}
+active_bg = ${color.background}
+inactive_bg = ${color.background}
+inactive_underline = ${color.background}
+active_underline = ${color.my_color4}
+label-padding = 1
