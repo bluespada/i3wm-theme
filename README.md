@@ -7,7 +7,7 @@
 ![result](https://raw.githubusercontent.com/masmaspedo/i3wm-theme/main/example.png)
 
 ## Dotfiles2.0
-    ### Changes
+### Changes
     - add to .Xresources
     - add kitty colorscheme
     - add my nvim configuration
